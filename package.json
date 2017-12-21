@@ -1,0 +1,17 @@
+{
+  "name": "ipc-message",
+  "version": "1.0.0",
+  "description": "It is an interactive class based on the process communication between `master`, `Worker` and `Agent`.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "author": "evio",
+  "license": "MIT",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "devDependencies": {
+    "koa": "^2.4.1"
+  }
+}
