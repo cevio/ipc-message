@@ -11,11 +11,11 @@ class Agent extends IPCMessage {
       clearInterval(this.timer);
       process.exit(0);
     });
-  }
 
-  onMessageReceive(msg) {
-    console.log('[Agent] onMessageReceive:', msg);
-    this.send([msg.from, 'master'], '/reply/agent', 'done');
+    this.on('message', msg => {
+      console.log('[Agent] onMessageReceive:', msg);
+      this.send([msg.from, 'master'], '/reply/agent', 'done');
+    })
   }
 }
 

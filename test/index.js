@@ -34,10 +34,10 @@ class Nodebase extends IPCMessage {
         console.log('server start at 3000');
       });
     }
-  }
 
-  onMessageReceive(msg) {
-    console.log(`[${this.type}] onMessageReceive:`, msg);
+    this.on('message', msg => {
+      console.log(`[${this.type}] onMessageReceive:`, msg);
+    });
   }
 }
 

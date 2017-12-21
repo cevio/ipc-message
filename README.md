@@ -14,7 +14,15 @@ npm install --save ipc-message
 const IPCMessage = require('ipc-message');
 module.exports = class NodeBase extends IPCMessage {
   constructor() {
-    super(); // If it is a `agent` type process, you need to set the parameter to `true`. => super(true);
+    // If it is a `agent` type process, you need to set the parameter to `true`. 
+    // super(true);
+    super();
+
+    // receive message from other processes.
+    this.on('message', msg => {
+      console.log(`[${this.type}] Receive Message:`, msg);
+    });
+
     if (this.type === 'master') {
       // do master ...
     } else {
@@ -24,20 +32,18 @@ module.exports = class NodeBase extends IPCMessage {
 }
 ```
 
-# Receive Message Function
+# Receive Message Event
 
-If we need to receive data from other processes, then we need to set a method on the subclass named `onMessageReceive`. This method has one parameter, that is, data.
-
+We can receive messages from other processes through the event `message`.
 
 ```javascript
 const IPCMessage = require('ipc-message');
 module.exports = class NodeBase extends IPCMessage {
   constructor() {
     super();
-  }
-
-  onMessageReceive(msg) {
-    console.log(`[${this.type}] onMessageReceive:`, msg);
+    this.on('message', msg => {
+      console.log(`[${this.type}] Receive Message:`, msg);
+    });
   }
 }
 ```
@@ -52,9 +58,9 @@ this.send(to, url, data);
 
 Introduction of parameters:
 
-- **to** {Array|String|Number} Which process to send data to: `master` `workers` `agents` `*` 
-- **url** {String} Data identification
-- **data** {*} data body
+- **to** `Array|String|Number` Which process to send data to: `master` `workers` `agents` `*` 
+- **url** `String` Data identification
+- **data** `*` data body
 
 When we send data through the subprocess or the `Agent` process, the `master` process is transferred. For example, if we want to send the `Agent` process to the sub process, we will first send it to the `Agent` process through the `master` process, and vice versa.
 
@@ -74,8 +80,8 @@ this.registAgent('agent', agent);
 
 **registAgent:(name, AgentObject)**
 
-- **name** {String} The name of `Agent.
-- **AgentObject** {Object} Agent object.
+- **name** `String` The name of `Agent.
+- **AgentObject** `Object` Agent object.
 
 No matter how many `Agent` processes you open, you must use this method to register. This method will automatically bind the logic of sending and receiving messages from Agent.
 
