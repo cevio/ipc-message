@@ -2,6 +2,10 @@
   "name": "ipc-message",
   "version": "1.0.0",
   "description": "It is an interactive class based on the process communication between `master`, `Worker` and `Agent`.",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:cevio/ipc-message.git"
+  },
   "main": "index.js",
   "engines": {
     "node": ">=8.0.0"
