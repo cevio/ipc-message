@@ -42,3 +42,11 @@ class Nodebase extends IPCMessage {
 }
 
 const nodebase = new Nodebase();
+
+if (nodebase.type === 'master') {
+  setTimeout(() => {
+    nodebase.send('agent', '/a/b', {
+      a:1
+    });
+  }, 5000)
+}

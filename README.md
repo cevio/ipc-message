@@ -53,13 +53,13 @@ module.exports = class NodeBase extends IPCMessage {
 We send data through the `send` method.
 
 ```javascript
-this.send(to, url, data);
+this.send(to, action, data);
 ```
 
 Introduction of parameters:
 
 - **to** `Array|String|Number` Which process to send data to: `master` `workers` `agents` `*` 
-- **url** `String` Data identification
+- **action** `String` Data identification
 - **data** `*` data body
 
 When we send data through the subprocess or the `Agent` process, the `master` process is transferred. For example, if we want to send the `Agent` process to the sub process, we will first send it to the `Agent` process through the `master` process, and vice versa.
@@ -75,13 +75,13 @@ const agent = ChildProcess.fork(agentWorkerRuntimeFile, null, {
   stdin: process.stdin,
   stdio: process.stdio
 });
-this.registAgent('agent', agent);
+this.registAgent('agentname', agent);
 ```
 
-**registAgent:(name, AgentObject)**
+**this.registAgent(agentname, agentobject)**
 
-- **name** `String` The name of `Agent.
-- **AgentObject** `Object` Agent object.
+- **agentname** `String` The name of `Agent`.
+- **agentobject** `Object` Agent object.
 
 No matter how many `Agent` processes you open, you must use this method to register. This method will automatically bind the logic of sending and receiving messages from Agent.
 
