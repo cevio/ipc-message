@@ -1,6 +1,6 @@
 {
   "name": "ipc-message",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "It is an interactive class based on the process communication between `master`, `Worker` and `Agent`.",
   "repository": {
     "type": "git",
