@@ -1,6 +1,6 @@
 {
   "name": "ipc-message",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "It is an interactive class based on the process communication between `master`, `Worker` and `Agent`.",
   "repository": {
     "type": "git",
@@ -17,5 +17,8 @@
   },
   "devDependencies": {
     "koa": "^2.4.1"
+  },
+  "dependencies": {
+    "async-events-listener": "0.0.4"
   }
 }
